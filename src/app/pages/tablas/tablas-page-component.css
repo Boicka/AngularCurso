@@ -1,0 +1,214 @@
+.custom-paginator {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: .5rem;
+    margin-bottom: 12px;
+}
+
+.custom-paginator button {
+    background-color: #1976d2;
+    color: #fff;
+    border: 0;
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.custom-paginator button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+.custom-paginator span {
+    font-weight: 500;
+}
+
+/* CSS para el paginador */
+/* Contenedor del paginador */
+.agq-paginator {
+    /* usa variables del tema Quartz si existen */
+    --agq-fg: var(--ag-foreground-color, #222);
+    --agq-fg-muted: var(--ag-secondary-foreground-color, #666);
+    --agq-bg: var(--ag-subheader-background-color, #f8f8f8);
+    --agq-border: var(--ag-border-color, #d6d6d6);
+    --agq-input-bg: var(--ag-input-background-color, #fff);
+    --agq-input-border: var(--ag-input-border-color, #c7c7c7);
+    --agq-hover: var(--ag-row-hover-color, #f2f2f2);
+    --agq-focus: var(--ag-selected-row-background-color, #cce1ff);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 6px 8px;
+    background: var(--agq-bg);
+    color: var(--agq-fg);
+    border-top: 1px solid var(--agq-border);
+    border-bottom: 1px solid var(--agq-border);
+    border-radius: 8px 8px 0 0;
+    /* queda bien si lo pones justo encima del grid */
+    font-size: 13px;
+    line-height: 1;
+}
+
+/* Zonas */
+.agq-pager-left,
+.agq-pager-center,
+.agq-pager-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.agq-pager-center {
+    justify-content: center;
+    flex: 1;
+}
+
+/* Botones */
+.agq-btn {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    min-height: 28px;
+    padding: 0;
+    border: 1px solid var(--agq-input-border);
+    background: var(--agq-input-bg);
+    color: var(--agq-fg);
+    border-radius: 6px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.02);
+    transition: background-color .15s ease, border-color .15s ease, box-shadow .15s ease;
+}
+
+.agq-btn:hover:not(:disabled) {
+    background: var(--agq-hover);
+}
+
+.agq-btn:disabled {
+    opacity: .55;
+    cursor: not-allowed;
+}
+
+.agq-btn:focus-visible {
+    outline: 2px solid var(--agq-focus);
+    outline-offset: 1px;
+}
+
+.agq-btn svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+}
+
+/* Chip de página actual */
+.agq-page-chip {
+    padding: 4px 10px;
+    border: 1px solid var(--agq-input-border);
+    background: var(--agq-input-bg);
+    color: var(--agq-fg-muted);
+    border-radius: 999px;
+    font-size: 12.5px;
+    white-space: nowrap;
+}
+
+.agq-page-chip strong {
+    color: var(--agq-fg);
+}
+
+.agq-of {
+    opacity: .85;
+}
+
+/* Texto de página/rango en el lado izquierdo */
+.agq-page-text {
+    color: var(--agq-fg-muted);
+    font-size: 12.5px;
+}
+
+/* Selector de tamaño */
+.agq-label {
+    color: var(--agq-fg-muted);
+    font-size: 12.5px;
+}
+
+.agq-select {
+    height: 28px;
+    border: 1px solid var(--agq-input-border);
+    border-radius: 6px;
+    background: var(--agq-input-bg);
+    color: var(--agq-fg);
+    padding: 0 28px 0 8px;
+    /* espacio para flecha nativa */
+    font-size: 12.5px;
+    appearance: none;
+    background-image:
+        linear-gradient(45deg, transparent 50%, currentColor 50%),
+        linear-gradient(135deg, currentColor 50%, transparent 50%);
+    background-position:
+        calc(100% - 16px) 10px,
+        calc(100% - 11px) 10px;
+    background-size: 6px 6px;
+    background-repeat: no-repeat;
+}
+
+.agq-select:focus-visible {
+    outline: 2px solid var(--agq-focus);
+    outline-offset: 1px;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .agq-paginator {
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    .agq-pager-center {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .agq-pager-right {
+        margin-left: auto;
+    }
+}
+
+/* CSS para la barra de busqueda */
+.agq-toolbar {
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+    margin: 8px 0 12px;
+}
+
+.agq-search {
+    flex: 1;
+    height: 32px;
+    padding: 0 10px;
+    border-radius: 6px;
+    border: 1px solid var(--ag-input-border-color, #c7c7c7);
+    background: var(--ag-input-background-color, #fff);
+    color: var(--ag-foreground-color, #222);
+    font-size: 13px;
+}
+
+.agq-search:focus {
+    outline: 2px solid var(--ag-selected-row-background-color, #cce1ff);
+    outline-offset: 1px;
+}
+
+.agq-clear {
+    height: 32px;
+    padding: 0 10px;
+    border-radius: 6px;
+    border: 1px solid var(--ag-input-border-color, #c7c7c7);
+    background: var(--ag-subheader-background-color, #f8f8f8);
+    cursor: pointer;
+}

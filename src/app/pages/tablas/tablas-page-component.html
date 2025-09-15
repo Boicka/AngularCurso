@@ -1,0 +1,103 @@
+<h1>Uso de Ag-Grid en Angular</h1>
+
+<hr>
+
+<!-- Paginador personalizado arriba -->
+<!-- <div class="custom-paginator">
+    <button (click)="goToFirstPage()" [disabled]="currentPage === 0">« Primera</button>
+    <button (click)="goToPreviousPage()" [disabled]="currentPage === 0">‹ Anterior</button>
+
+    <span>Página {{ currentPage + 1 }} de {{ totalPages }}</span>
+
+    <button (click)="goToNextPage()" [disabled]="currentPage + 1 >= totalPages">Siguiente ›</button>
+    <button (click)="goToLastPage()" [disabled]="currentPage + 1 >= totalPages">Última »</button>
+
+    <label for="pageSize" style="margin-left: 1rem;">Tamaño:</label>
+    <select id="pageSize" [ngModel]="pageSize" (ngModelChange)="onPageSizeChanged($event)">
+        <option *ngFor="let size of pageSizeOptions" [ngValue]="size">{{ size }}</option>
+    </select>
+</div> -->
+<!-- Exportar a csv -->
+<div>
+    <!-- Botón: Exportar todo lo visible (respeta filtros/orden actual) -->
+    <button type="button" (click)="exportCsv()">Exportar</button>
+</div>
+
+
+<!-- Esto es la barra de busqueda -->
+<!-- Barra de búsqueda / quick filter -->
+<div class="agq-toolbar">
+    <input type="text" placeholder="Buscar en la tabla…" [ngModel]="filterText"
+        (ngModelChange)="onQuickFilterChange($event)" class="agq-search" aria-label="Búsqueda global" />
+    <button type="button" class="agq-clear" (click)="clearQuickFilter()" *ngIf="filterText">Limpiar</button>
+</div>
+
+
+<!-- Asegúrate de que este bloque esté dentro de un contenedor con clase .ag-theme-quartz -->
+<div class="agq-paginator" role="navigation" aria-label="Paginación">
+    <div class="agq-pager-left">
+        <!-- Puedes mostrar rango si lo calculas: {{startRow}}–{{endRow}} de {{rowCount}} -->
+        <span class="agq-page-text">Página {{ currentPage + 1 }} de {{ totalPages }}</span>
+    </div>
+
+    <div class="agq-pager-center">
+        <button class="agq-btn" (click)="goToFirstPage()" [disabled]="currentPage === 0" aria-label="Primera">
+            <!-- « -->
+            <svg viewBox="0 0 20 20" aria-hidden="true">
+                <path d="M12.5 4.5l-1-1L5 10l6.5 6.5 1-1L7 10l5.5-5.5zM5 4h1v12H5z" />
+            </svg>
+        </button>
+
+        <button class="agq-btn" (click)="goToPreviousPage()" [disabled]="currentPage === 0" aria-label="Anterior">
+            <!-- ‹ -->
+            <svg viewBox="0 0 20 20" aria-hidden="true">
+                <path d="M12.5 16.5l-6-6 6-6 1 1-5 5 5 5z" />
+            </svg>
+        </button>
+
+        <div class="agq-page-chip">
+            Página <strong>{{ currentPage + 1 }}</strong> <span class="agq-of">de</span> {{ totalPages }}
+        </div>
+
+        <button class="agq-btn" (click)="goToNextPage()" [disabled]="currentPage + 1 >= totalPages"
+            aria-label="Siguiente">
+            <!-- › -->
+            <svg viewBox="0 0 20 20" aria-hidden="true">
+                <path d="M7.5 3.5l6 6-6 6-1-1 5-5-5-5z" />
+            </svg>
+        </button>
+
+        <button class="agq-btn" (click)="goToLastPage()" [disabled]="currentPage + 1 >= totalPages" aria-label="Última">
+            <!-- » -->
+            <svg viewBox="0 0 20 20" aria-hidden="true">
+                <path d="M7.5 15.5l1 1L15 10 8.5 3.5l-1 1L13 10l-5.5 5.5zM14 16h1V4h-1z" />
+            </svg>
+        </button>
+    </div>
+
+    <div class="agq-pager-right">
+        <label class="agq-label" for="pageSize">Tamaño</label>
+        <select id="pageSize" class="agq-select" [ngModel]="pageSize" (ngModelChange)="onPageSizeChanged($event)">
+            <option *ngFor="let s of pageSizeOptions" [ngValue]="s">{{ s }}</option>
+        </select>
+    </div>
+</div>
+
+
+
+<div class="row">
+    <div class="col">
+        <!-- The AG Grid component -->
+        <!-- Aqui en la tabla se define el tema -->
+        <!-- Un breve estilo para la tabla que es unicamente 
+        el alto y ancho -->
+
+        <ag-grid-angular class="ag-theme-quartz" style="height: 500px; width: 100%;" [rowData]="userList"
+            [columnDefs]="colDefs" [defaultColDef]="defaultColDef" [gridOptions]="gridOptions" [pagination]="true"
+            [paginationPageSize]="1" [paginationPageSizeSelector]="[1,2,3,4,5,100]" (gridReady)="onGridReady($event)"
+            (paginationChanged)="onPaginationChanged()" (gridPreDestroy)="onGridPreDestroy()" />
+        <!-- Se usa rowData para el contenido de la tabla -->
+        <!-- Se usa columnDefs para la configuracion de las columnas(Previamente establecido en el TS) -->
+        <!-- Se usa defaultColDef para la configuracion por default de las columnas -->
+    </div>
+</div>
